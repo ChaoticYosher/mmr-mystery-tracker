@@ -16,18 +16,10 @@ function reducer(data: LocationData, action: LocationUpdateData) {
                 (setting) => actionData.category === setting.name
             );
             if (catIndex != -1) {
-                const optionIndex = data.settings[
-                    catIndex
-                ].categories.findIndex(
-                    (category) => category === actionData.value
-                );
-                if (optionIndex != -1) {
-                    data.currentSettings[data.settings[catIndex].name] =
-                        data.settings[catIndex].categories[optionIndex].name ??
-                        "";
-                }
+                data.currentSettings[actionData.category] = actionData.value;
             }
-            break;
+            console.log(Array.from(Object.entries(data.currentSettings)));
+            return data;
         }
     }
 }
@@ -37,9 +29,10 @@ export function Checklist() {
     const [state, dispatch] = useImmerReducer(reducer, data);
     return (
         <>
-            {data.settings.map((setting) =>
+            {state.settings.map((setting) =>
                 setting.categories.map((category) => (
                     <button
+                        key={setting.name + ": " + category.name}
                         onClick={() =>
                             dispatch({
                                 type: ChecklistAction.UpdateSetting,
@@ -47,13 +40,20 @@ export function Checklist() {
                                 value: category.name ?? "",
                             })
                         }
+                        className={
+                            category.name &&
+                            category.name ===
+                                state.currentSettings[setting.name]
+                                ? "selected-setting"
+                                : ""
+                        }
                     >
                         {setting.name}: {category.name}
                     </button>
                 ))
             )}
             {state.locations.map((location) => (
-                <button>{location.name}</button>
+                <button key={location.id}>{location.name}</button>
             ))}
         </>
     );

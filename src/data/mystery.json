@@ -4,7 +4,8 @@
         "categories": [
             {
                 "name": "None",
-                "weight": 65
+                "weight": 65,
+                "default": true
             },
             {
                 "name": "One",
@@ -38,7 +39,8 @@
                 "weight": 20,
                 "items": "",
                 "tooltip": "Price weights +30/10",
-                "icon": ""
+                "icon": "",
+                "default": true
             }
         ]
     },
@@ -54,7 +56,8 @@
                 "name": "On",
                 "weight": 30,
                 "items": "",
-                "icon": ""
+                "icon": "",
+                "default": true
             }
         ]
     },
@@ -70,7 +73,8 @@
                 "name": "On",
                 "weight": 30,
                 "items": "",
-                "icon": ""
+                "icon": "",
+                "default": true
             }
         ]
     },

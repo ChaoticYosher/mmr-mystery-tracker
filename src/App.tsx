@@ -19,6 +19,9 @@ function App() {
             }
         })
     );
+    data.locations.forEach((location, index) => {
+        location.id = index;
+    });
     return (
         <>
             <LocationContext.Provider value={data}>
