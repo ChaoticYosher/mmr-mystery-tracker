@@ -1,0 +1,103 @@
+[
+    {
+        "name": "Starting Boss Remains",
+        "categories": [
+            {
+                "name": "None",
+                "weight": 65
+            },
+            {
+                "name": "One",
+                "weight": 25,
+                "tooltip": "Sets Blitz-1"
+            },
+            {
+                "name": "Two",
+                "weight": 10,
+                "tooltip": "Sets Blitz-2"
+            }
+        ]
+    },
+    {
+        "name": "Shops",
+        "categories": [
+            {
+                "name": "Off",
+                "weight": 60,
+                "icon": ""
+            },
+            {
+                "name": "Late",
+                "weight": 20,
+                "items": "",
+                "tooltip": "Price weights +15/5",
+                "icon": ""
+            },
+            {
+                "name": "Full",
+                "weight": 20,
+                "items": "",
+                "tooltip": "Price weights +30/10",
+                "icon": ""
+            }
+        ]
+    },
+    {
+        "name": "Soils",
+        "categories": [
+            {
+                "name": "Off",
+                "weight": 70,
+                "icon": ""
+            },
+            {
+                "name": "On",
+                "weight": 30,
+                "items": "",
+                "icon": ""
+            }
+        ]
+    },
+    {
+        "name": "Cows",
+        "categories": [
+            {
+                "name": "Off",
+                "weight": 70,
+                "icon": ""
+            },
+            {
+                "name": "On",
+                "weight": 30,
+                "items": "",
+                "icon": ""
+            }
+        ]
+    },
+    {
+        "name": "Pots",
+        "categories": [
+            {
+                "name": "Off",
+                "weight": 80,
+                "icon": ""
+            },
+            {
+                "name": "Temples",
+                "weight": 10,
+                "items": "",
+                "tooltip": "Includes refers to  Pirates' Fortress, Ocean Spider House, Beneath the Well, Ikana Castle, and Secret Shrine. Stone Tower Not Included.",
+                "icon": ""
+            },
+            {
+                "name": "Full",
+                "weight": 10,
+                "items": "",
+                "icon": "",
+                "tooltip": "One fewer Always hint",
+                "hard": true,
+                "default": true
+            }
+        ]
+    }
+]
