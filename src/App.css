@@ -41,6 +41,10 @@
     color: green;
 }
 
+.checked {
+    color: red;
+}
+
 .read-the-docs {
     color: #888;
 }

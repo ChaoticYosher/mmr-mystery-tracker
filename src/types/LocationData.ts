@@ -4,20 +4,24 @@ import { MysterySettingData } from "./MysterySettingData";
 export type LocationData = {
     locations: Check[];
     regionCache: Map<string, number[]>;
-    checkedLocations: Map<string, string>;
+    checkedLocations: Map<string, string[]>;
 };
 
 export enum TrackerAction {
-    UpdateSetting = "checklistActionUpdateSetting",
+    UpdateSetting = "trackerActionUpdateSetting",
+    UpdateLocation = "trackerActionUpdateLocation",
 }
 
-export type LocationUpdateData = {
-    type: TrackerAction;
-} & UpdateSettingData;
+export type UpdateLocationData = {
+    name: string;
+    region: string;
+    type: string;
+};
 
-export type UpdateSettingData = {
+export type SettingUpdateData = {
     category: string;
     value: string;
+    type: TrackerAction;
 };
 
 export type SettingData = {

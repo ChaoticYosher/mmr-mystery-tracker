@@ -1,30 +1,27 @@
 import { useContext } from "react";
 import { useImmerReducer } from "use-immer";
 import {
-    TrackerAction,
-    LocationUpdateData,
     SettingData,
-    UpdateSettingData,
+    SettingUpdateData,
+    TrackerAction,
 } from "../types/LocationData";
 import { Category, MysterySettingData } from "../types/MysterySettingData";
 import { SettingContext } from "./SettingContext";
 
-function reducer(data: SettingData, action: LocationUpdateData) {
+function reducer(data: SettingData, action: SettingUpdateData) {
     switch (action.type) {
         case TrackerAction.UpdateSetting: {
-            const actionData: UpdateSettingData = action;
             const setting: MysterySettingData | undefined = data.settings.find(
-                (setting) => actionData.category === setting.name
+                (setting) => action.category === setting.name
             );
             if (
                 setting &&
                 setting.categories.find(
-                    (category) => category.name === actionData.value
+                    (category) => category.name === action.value
                 )
             ) {
-                data.enabled[actionData.category] = actionData.value;
+                data.enabled[action.category] = action.value;
             }
-            console.log(Array.from(Object.entries(data.enabled)));
             return data;
         }
     }

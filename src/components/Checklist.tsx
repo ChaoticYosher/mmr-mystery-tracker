@@ -3,6 +3,7 @@ import { LocationData, SettingData } from "../types/LocationData";
 import { LocationContext } from "./LocationContext";
 import { MysterySetting } from "./MysterySetting";
 import { SettingContext } from "./SettingContext";
+import { Region } from "./Region";
 
 export function Checklist() {
     const locations: LocationData = useContext(LocationContext);
@@ -10,17 +11,10 @@ export function Checklist() {
     return (
         <>
             {settings.settings.map((setting) => (
-                <MysterySetting setting={setting} />
+                <MysterySetting key={setting.name} setting={setting} />
             ))}
             {Array.from(locations.regionCache.keys()).map((region: string) => (
-                <div>
-                    <p>{region}</p>
-                    {locations.regionCache.get(region)?.map((locationIndex) => (
-                        <button key={locationIndex}>
-                            {locations.locations[locationIndex].name}
-                        </button>
-                    ))}
-                </div>
+                <Region key={region} name={region}></Region>
             ))}
         </>
     );

@@ -11,13 +11,16 @@ function App() {
     const locations: LocationData = {
         locations: _locations,
         regionCache: new Map<string, number[]>(),
-        checkedLocations: new Map<string, string>(),
+        checkedLocations: new Map<string, string[]>(),
     };
     locations.locations.forEach((location, index) => {
         location.id = index;
         const region: string = location.region;
         if (!locations.regionCache.has(region)) {
             locations.regionCache.set(region, []);
+        }
+        if (!locations.checkedLocations.has(region)) {
+            locations.checkedLocations.set(region, []);
         }
         locations.regionCache.get(region)?.push(index);
     });

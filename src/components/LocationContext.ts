@@ -4,5 +4,5 @@ import { createContext } from "react";
 export const LocationContext = createContext<LocationData>({
     locations: [],
     regionCache: new Map<string, number[]>(),
-    checkedLocations: new Map<string, string>(),
+    checkedLocations: new Map<string, string[]>(),
 });
