@@ -3,7 +3,7 @@ import { MysterySettingData } from "./MysterySettingData";
 
 export type LocationData = {
     locations: Check[];
-    locationIndex: Map<string, number[]>;
+    regionCache: Map<string, number[]>;
     checkedLocations: Map<string, string>;
 };
 

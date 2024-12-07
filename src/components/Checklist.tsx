@@ -12,20 +12,16 @@ export function Checklist() {
             {settings.settings.map((setting) => (
                 <MysterySetting setting={setting} />
             ))}
-            {Array.from(locations.locationIndex.keys()).map(
-                (region: string) => (
-                    <div>
-                        <p>{region}</p>
-                        {locations.locationIndex
-                            .get(region)
-                            ?.map((locationIndex) => (
-                                <button key={locationIndex}>
-                                    {locations.locations[locationIndex].name}
-                                </button>
-                            ))}
-                    </div>
-                )
-            )}
+            {Array.from(locations.regionCache.keys()).map((region: string) => (
+                <div>
+                    <p>{region}</p>
+                    {locations.regionCache.get(region)?.map((locationIndex) => (
+                        <button key={locationIndex}>
+                            {locations.locations[locationIndex].name}
+                        </button>
+                    ))}
+                </div>
+            ))}
         </>
     );
 }

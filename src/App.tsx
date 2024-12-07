@@ -10,16 +10,16 @@ function App() {
     const initialSettings: { [key: string]: string } = {};
     const locations: LocationData = {
         locations: _locations,
-        locationIndex: new Map<string, number[]>(),
+        regionCache: new Map<string, number[]>(),
         checkedLocations: new Map<string, string>(),
     };
     locations.locations.forEach((location, index) => {
         location.id = index;
         const region: string = location.region;
-        if (!locations.locationIndex.has(region)) {
-            locations.locationIndex.set(region, []);
+        if (!locations.regionCache.has(region)) {
+            locations.regionCache.set(region, []);
         }
-        locations.locationIndex.get(region)?.push(index);
+        locations.regionCache.get(region)?.push(index);
     });
     const settings: SettingData = {
         settings: _settings,
