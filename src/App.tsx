@@ -1,31 +1,43 @@
 import "./App.css";
 import { Checklist } from "./components/Checklist";
 import { LocationContext } from "./components/LocationContext";
+import { SettingContext } from "./components/SettingContext";
 import _locations from "./data/checks.json";
 import _settings from "./data/mystery.json";
-import { LocationData } from "./types/LocationData";
+import { LocationData, SettingData } from "./types/LocationData";
 
 function App() {
     const initialSettings: { [key: string]: string } = {};
-    const data: LocationData = {
+    const locations: LocationData = {
         locations: _locations,
-        settings: _settings,
-        currentSettings: initialSettings,
+        locationIndex: new Map<string, number[]>(),
+        checkedLocations: new Map<string, string>(),
     };
-    data.settings.forEach((setting) =>
+    locations.locations.forEach((location, index) => {
+        location.id = index;
+        const region: string = location.region;
+        if (!locations.locationIndex.has(region)) {
+            locations.locationIndex.set(region, []);
+        }
+        locations.locationIndex.get(region)?.push(index);
+    });
+    const settings: SettingData = {
+        settings: _settings,
+        enabled: initialSettings,
+    };
+    settings.settings.forEach((setting) =>
         setting.categories.forEach((category) => {
             if (category.default) {
                 initialSettings[setting.name] = category.name ?? "Off";
             }
         })
     );
-    data.locations.forEach((location, index) => {
-        location.id = index;
-    });
     return (
         <>
-            <LocationContext.Provider value={data}>
-                <Checklist></Checklist>
+            <LocationContext.Provider value={locations}>
+                <SettingContext.Provider value={settings}>
+                    <Checklist></Checklist>
+                </SettingContext.Provider>
             </LocationContext.Provider>
         </>
     );
