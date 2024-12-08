@@ -1,29 +1,13 @@
 import "./App.css";
 import { Checklist } from "./components/Checklist";
-import { LocationContext } from "./components/LocationContext";
-import { SettingContext } from "./components/SettingContext";
+import { LocationProvider } from "./components/LocationProvider";
+import { SettingProvider } from "./components/SettingProvider";
 import _locations from "./data/checks.json";
 import _settings from "./data/mystery.json";
 import { LocationData, SettingData } from "./types/LocationData";
 
-function App() {
+function initializeSettings(): SettingData {
     const initialSettings: { [key: string]: string } = {};
-    const locations: LocationData = {
-        locations: _locations,
-        regionCache: new Map<string, number[]>(),
-        checkedLocations: new Map<string, string[]>(),
-    };
-    locations.locations.forEach((location, index) => {
-        location.id = index;
-        const region: string = location.region;
-        if (!locations.regionCache.has(region)) {
-            locations.regionCache.set(region, []);
-        }
-        if (!locations.checkedLocations.has(region)) {
-            locations.checkedLocations.set(region, []);
-        }
-        locations.regionCache.get(region)?.push(index);
-    });
     const settings: SettingData = {
         settings: _settings,
         enabled: initialSettings,
@@ -35,14 +19,36 @@ function App() {
             }
         })
     );
+    return settings;
+}
+
+function initialLocations(): LocationData {
+    const initialLocations: LocationData = {
+        locations: _locations,
+        regionCache: new Map<string, number[]>(),
+        checkedLocations: new Map<string, string[]>(),
+    };
+    initialLocations.locations.forEach((location, index) => {
+        location.id = index;
+        const region: string = location.region;
+        if (!initialLocations.regionCache.has(region)) {
+            initialLocations.regionCache.set(region, []);
+        }
+        if (!initialLocations.checkedLocations.has(region)) {
+            initialLocations.checkedLocations.set(region, []);
+        }
+        initialLocations.regionCache.get(region)?.push(index);
+    });
+    return initialLocations;
+}
+
+function App() {
     return (
-        <>
-            <LocationContext.Provider value={locations}>
-                <SettingContext.Provider value={settings}>
-                    <Checklist></Checklist>
-                </SettingContext.Provider>
-            </LocationContext.Provider>
-        </>
+        <LocationProvider initialLocations={initialLocations()}>
+            <SettingProvider initialSettings={initializeSettings()}>
+                <Checklist></Checklist>
+            </SettingProvider>
+        </LocationProvider>
     );
 }
 

@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { LocationData, SettingData } from "../types/LocationData";
 import { LocationContext } from "./LocationContext";
 import { MysterySetting } from "./MysterySetting";
-import { SettingContext } from "./SettingContext";
 import { Region } from "./Region";
+import { SettingContext } from "./SettingContext";
 
 export function Checklist() {
     const locations: LocationData = useContext(LocationContext);
