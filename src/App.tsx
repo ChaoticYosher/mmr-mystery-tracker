@@ -4,6 +4,7 @@ import { LocationProvider } from "./components/LocationProvider";
 import { SettingProvider } from "./components/SettingProvider";
 import _locations from "./data/checks.json";
 import _settings from "./data/mystery.json";
+import { Check } from "./types/Check";
 import { LocationData, SettingData } from "./types/LocationData";
 
 function initializeSettings(): SettingData {
@@ -24,7 +25,7 @@ function initializeSettings(): SettingData {
 
 function initialLocations(): LocationData {
   const initialLocations: LocationData = {
-    locations: _locations,
+    locations: _locations as Check[],
     regionCache: new Map<string, number[]>(),
     checkedLocations: new Map<string, string[]>(),
   };
